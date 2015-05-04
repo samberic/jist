@@ -18,4 +18,27 @@ Pull requests are welcome if you want it dropping down. The aim is that you've p
 
 ##How do I run it?
 
-java -jar 
+java -jar jist-1.0.0.jar
+
+Jist will be running on port :4567.
+
+##How do I use it?
+
+Go to http://yourhost:4567.  Here you can create your new Jist.
+
+All Jists are available from http://yourhost:4567/jists/<jistid>
+
+##I'd love feature X Y Z
+
+Pull requests are welcomed and encouraged, or just [email me](sam@samatkinson.com) and I'll see what I can do.
+
+##Release notes
+
+###1.0.0
+- Basic first release, single file anonymous gists.
+
+##Roadmap
+- Multiple files per jist
+- Commenting
+- Login
+- Anonymous jists
