@@ -21,5 +21,6 @@ public class Server {
         staticFileLocation("static");
         post("/add", new AddJist(storage));
         get("/jists/:id", new ServeJist(storage), new MustacheTemplateEngine());
+        get("/", new ServeJist(storage), new MustacheTemplateEngine());
     }
 }

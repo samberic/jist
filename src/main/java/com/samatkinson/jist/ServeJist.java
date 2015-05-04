@@ -8,6 +8,7 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ServeJist implements TemplateViewRoute {
     private Storage storage;
@@ -17,16 +18,12 @@ public class ServeJist implements TemplateViewRoute {
     }
 
     public ModelAndView handle(Request request, Response response) {
-        String jistId = request.params(":id");
-        String jist = "";
+        Optional<String> jistId = Optional.ofNullable(request.params(":id"));
 
-        boolean isNewJist = jistId.equals("create");
-        if(!isNewJist)
-            jist  = storage.getJist(Integer.parseInt(jistId));
+        final Map map = new HashMap();
 
-        Map map = new HashMap();
-        map.put("jist", jist);
-        map.put("isNewJist", isNewJist);
+        jistId.ifPresent(id -> map.put("jist", storage.getJist(Integer.parseInt(id))));
+        map.put("isNewJist", !jistId.isPresent());
         map.put("server", request.host());
 
         return new ModelAndView(map, "jist.mustache");
