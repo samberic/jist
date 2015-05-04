@@ -14,7 +14,7 @@ Yes, absolutely.  However Jist is aimed very specifically at the corporate world
 
 ##But you used Java 8 and I only have Java 4/5/6/7
 
-Pull requests are welcome if you want it dropping down. The aim is that you've probably got a box you can sneak Java 8 onto. If not then drop me an [email](sam@samatkinson.com) and I'm happy to look into it.
+Pull requests are welcome if you want it dropping down. The aim is that you've probably got a box you can sneak Java 8 onto. If not then drop me an [email](mailto:sam@samatkinson.com) and I'm happy to look into it.
 
 ##How do I run it?
 
@@ -30,7 +30,7 @@ All Jists are available from http://yourhost:4567/jists/<jistid>
 
 ##I'd love feature X Y Z
 
-Pull requests are welcomed and encouraged, or just [email me](sam@samatkinson.com) and I'll see what I can do.
+Pull requests are welcomed and encouraged, or just [email me](mailto:sam@samatkinson.com) and I'll see what I can do.
 
 ##Release notes
 
