@@ -15,17 +15,29 @@
             <version>2.1</version>
         </dependency>
         <dependency>
-            <groupId>io.reactivex</groupId>
-            <artifactId>rxjava</artifactId>
-            <version>1.0.10</version>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-mustache</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.jinq</groupId>
-            <artifactId>jinq-jpa</artifactId>
-            <version>1.7</version>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.8.7</version>
         </dependency>
 
-
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
