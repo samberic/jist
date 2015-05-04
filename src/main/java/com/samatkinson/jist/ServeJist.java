@@ -27,6 +27,7 @@ public class ServeJist implements TemplateViewRoute {
         Map map = new HashMap();
         map.put("jist", jist);
         map.put("isNewJist", isNewJist);
+        map.put("server", request.host());
 
         return new ModelAndView(map, "jist.mustache");
     }

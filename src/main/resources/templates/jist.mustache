@@ -56,10 +56,10 @@
             </div>
             {{#isNewJist}}
             <div class="four columns">
-                <button onclick="saveJist()">Save Jist</button>
+                <button class="save" onclick="saveJist()">Save Jist</button>
                 <br/>
-                <button onclick="editor.setValue('')">Clear Jist</button>
-                <textarea class="result"></textarea>
+                <button class="clear" onclick="editor.setValue('')">Clear Jist</button>
+                <input type="text" style="display: none;" onclick="this.setSelectionRange(0, this.value.length)" class="result" size="27"/>
             {{/isNewJist}}
             </div>
         </div>
@@ -82,7 +82,10 @@
 
     function saveJist(){
         $.post("/add", { jist : editor.getValue()},function( data ) {
-            $( ".result" ).html( data );
+            $( ".result" ).val('http://{{server}}/jists/' + data);
+            $( ".result").show();
+            $( ".save").hide();
+            $( ".clear").hide();
         })
     }
 </script>
