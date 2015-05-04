@@ -18,7 +18,7 @@ Pull requests are welcome if you want it dropping down. The aim is that you've p
 
 ##How do I run it?
 
-java -jar jist-1.0.0.jar
+java -jar jist.jar
 
 Jist will be running on port :4567.
 
