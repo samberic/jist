@@ -46,8 +46,10 @@
                         </manifest>
                     </archive>
                     <descriptorRefs>
-                        <descriptorRef>runnable</descriptorRef>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                        <finalName>jist</finalName>
+                        <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
                     <execution>
