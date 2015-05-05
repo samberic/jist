@@ -58,14 +58,14 @@ public class SqliteStorage implements Storage {
 
     @Override
     public int addJist(String content) {
-        String insert = "insert into jist (jist) values ('" + content + "');";
-        Statement statement;
+        String insert = "insert into jist (jist) values (?);";
         try {
-
-            statement = c.createStatement();
-            statement.execute(insert);
-            statement.execute("select last_insert_rowid();");
-            int anInt = statement.getResultSet().getInt(1);
+            PreparedStatement statement = c.prepareStatement(insert);
+            statement.setString(1, content);
+            statement.execute();
+            Statement statement1 = c.createStatement();
+            statement1.execute("select last_insert_rowid();");
+            int anInt = statement1.getResultSet().getInt(1);
             statement.close();
             return anInt;
 
@@ -77,13 +77,12 @@ public class SqliteStorage implements Storage {
 
     @Override
     public String getJist(int jistId) {
-        String select = "select * from jist where id = " + jistId;
-        Statement statement;
+        String select = "select * from jist where id = ?";
         String jist = null;
-
         try {
-            statement = c.createStatement();
-            statement.execute(select);
+            PreparedStatement statement = c.prepareStatement(select);
+            statement.setInt(1, jistId);
+            statement.execute();
             ResultSet resultSet = statement.getResultSet();
             if(resultSet.next()) {
                 jist = resultSet.getString("jist");
