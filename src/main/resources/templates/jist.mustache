@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/skeleton.css">
     <link rel="stylesheet" href="/css/jist.css">
+    <script src="/js/matchmedia.addListener.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/matchmedia.polyfill.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/respond.js" type="text/javascript" charset="utf-8"></script>
+
 
     <!-- Favicon
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -46,28 +50,23 @@
             </nav>
         </div>
     </div>
-        <div class="row">
-            <div class="eight columns">
-                <h4>New File</h4>
-
-                <div id="editor">{{jist}}</div>
-                <br/>
-                {{#isNewJist}}<button>+ Add File</button>{{/isNewJist}}
-            </div>
-            {{#isNewJist}}
-            <div class="four columns">
-                <button class="save" onclick="saveJist()">Save Jist</button>
-                <br/>
-                <button class="clear" onclick="editor.setValue('')">Clear Jist</button>
-                <input type="text" style="display: none;" onclick="this.setSelectionRange(0, this.value.length)" class="result" size="27"/>
-            {{/isNewJist}}
-            </div>
-        </div>
-    <div class="row footer">
+    <div class="row">
         <div class="twelve columns">
-            <a href="http://www.samatkinson.com">&copy Sam Atkinson.</a>
+            <h4>New File</h4>
+
+            <div id="editor">{{jist}}</div>
+            <br/>
+            <!-- {{#isNewJist}}<button>+ Add File</button>{{/isNewJist}}-->
         </div>
     </div>
+    <div class="row">
+        {{#isNewJist}}
+            <button class="save" onclick="saveJist()">Save Jist</button>
+            <button class="clear" onclick="editor.setValue('')">Clear Jist</button>
+            <span style="display: none;" class="result">You can access this jist from: </span><input type="text" style="display: none;" onclick="this.setSelectionRange(0, this.value.length)" class="result" size="27"/>
+        {{/isNewJist}}
+    </div>
+
 </div>
 
 <!-- End Document
@@ -78,14 +77,15 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/javascript");
-        {{^isNewJist}}editor.setReadOnly(true);{{/isNewJist}}
+    editor.getSession().setUseWorker(false);
+            {{^isNewJist}}editor.setReadOnly(true);{{/isNewJist}}
 
-    function saveJist(){
-        $.post("/add", { jist : editor.getValue()},function( data ) {
-            $( ".result" ).val('http://{{server}}/jists/' + data);
-            $( ".result").show();
-            $( ".save").hide();
-            $( ".clear").hide();
+    function saveJist() {
+        $.post("/add", {jist: editor.getValue()}, function (data) {
+            $(".result").val('http://{{server}}/jists/' + data);
+            $(".result").show();
+            $(".save").hide();
+            $(".clear").hide();
         })
     }
 </script>

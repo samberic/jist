@@ -13,3 +13,7 @@ body{
     margin-top: -3em;
 
 }
+.two button{
+    width: 100%;
+    padding: 0px;
+}
