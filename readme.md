@@ -34,6 +34,13 @@ Pull requests are welcomed and encouraged, or just [email me](mailto:sam@samatki
 
 ##Release notes
 
+All releases are available from [www.samatkinson.com/jist](www.samatkinson.com/jist)
+
+###1.0.1
+- Compatible with x64 redhat
+- Added respond.js for ie8 compatibility
+- Fixed SQL handling to prevent injection attacks/problems with special chars
+
 ###1.0.0
 - Basic first release, single file anonymous gists.
 
