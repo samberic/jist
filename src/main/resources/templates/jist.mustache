@@ -51,13 +51,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="twelve columns">
+        <div class="six columns">
             <h4>New File</h4>
-
-            <div id="editor">{{jist}}</div>
-            <br/>
-            <!-- {{#isNewJist}}<button>+ Add File</button>{{/isNewJist}}-->
         </div>
+        <div class="six columns">
+            <select class="keybinding" onchange="changeKeyBinding()">
+                <option selected disabled>Key Binding</option>
+            </select> 
+            <select class="theme" onchange="changeTheme()">
+                <option selected disabled>Theme</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div id="editor">{{jist}}</div>
+        <br/>
+            <!-- {{#isNewJist}}<button>+ Add File</button>{{/isNewJist}}-->
     </div>
     <div class="row">
         {{#isNewJist}}
@@ -75,9 +84,10 @@
 <script src="/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/chrome");
     editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setUseWorker(false);
+    initTheme();
+    initKeyBinding();
             {{^isNewJist}}editor.setReadOnly(true);{{/isNewJist}}
 
     function saveJist() {
@@ -87,6 +97,78 @@
             $(".save").hide();
             $(".clear").hide();
         })
+    }
+
+    function initTheme() {
+        var themes = [
+            'ambiance',
+            'chrome',
+            'clouds',
+            'clouds_midnight',
+            'crimson_editor',
+            'dawn',
+            'dreamweaver',
+            'eclipse',
+            'github',
+            'idle_fingers',
+            'kr_theme',
+            'merbivore',
+            'merbivore_soft',
+            'monokai',
+            'pastel_on_dark',
+            'solarized_dark',
+            'solarized_light',
+            'textmate',
+            'tomorrow',
+            'tomorrow_night',
+            'tomorrow_night_eighties',
+            'twilight',
+            'vibrant_ink',
+            'xcode'
+        ], theme,
+        elSelect = $('.theme');
+        for (var i = 0; i < themes.length; i++) {
+            elSelect.append('<option value="' + themes[i] + '">' + themes[i] + '</option>');
+        }
+        if ('localStorage' in window && window.localStorage) {
+            theme = localStorage.getItem('jistTheme');
+        }
+        theme = theme || 'chrome';
+        editor.setTheme('ace/theme/' + theme);
+    }
+
+    function initKeyBinding() {
+        var keyBindings = [
+            'ace',
+            'emacs',
+            'vim'
+        ], keyBinding,
+        elSelect = $('.keybinding');
+        for (var i = 0; i < keyBindings.length; i++) {
+            elSelect.append('<option value="' + (keyBindings[i] === 'ace' ? '' : 'ace/keyboard/' + keyBindings[i]) + '">' + keyBindings[i] + '</option>');
+        }
+        if ('localStorage' in window && window.localStorage) {
+            keyBinding = localStorage.getItem('jistKeyBinding');
+        }
+        keyBinding = keyBinding || '';
+        editor.setKeyboardHandler(keyBinding); 
+    }
+
+    function changeTheme() {
+        var theme = $('.theme').val();
+        editor.setTheme('ace/theme/' + theme);
+        if ('localStorage' in window && window.localStorage) {
+            localStorage.setItem('jistTheme', theme);
+        }
+    }
+
+    function changeKeyBinding() {
+        var keyBinding = $('.keybinding').val();
+        editor.setKeyboardHandler(keyBinding);
+        if ('localStorage' in window && window.localStorage) {
+            localStorage.setItem('jistKeyBinding', keyBinding);
+        }
+
     }
 </script>
 </body>
