@@ -4,7 +4,7 @@
 
     <groupId>com.samatkinson</groupId>
     <artifactId>jist</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <scm>
         <connection>scm:git:https://github.com/samberic/jist.git</connection>
         <url>https://github.com/samberic/jist.git</url>
