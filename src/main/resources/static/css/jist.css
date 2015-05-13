@@ -17,3 +17,11 @@ body{
     width: 100%;
     padding: 0px;
 }
+
+select.theme {
+    float: right;
+}
+
+select.keybinding {
+    float: right;
+}
