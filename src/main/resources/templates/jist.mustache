@@ -91,7 +91,7 @@
             {{^isNewJist}}editor.setReadOnly(true);{{/isNewJist}}
 
     function saveJist() {
-        $.post("/add", {jist: editor.getValue()}, function (data) {
+        $.post("{{prefix}}/add", {jist: editor.getValue()}, function (data) {
             $(".result").val('http://{{server}}{{prefix}}/jists/' + data);
             $(".result").show();
             $(".save").hide();
