@@ -36,6 +36,10 @@ Pull requests are welcomed and encouraged, or just [email me](mailto:sam@samatki
 
 All releases are available from [www.samatkinson.com/jist](www.samatkinson.com/jist)
 
+###1.0.3
+
+- Support for running in [App Runner](https://github.com/danielflower/app-runner)
+
 ###1.0.1
 - Compatible with x64 redhat
 - Added respond.js for ie8 compatibility

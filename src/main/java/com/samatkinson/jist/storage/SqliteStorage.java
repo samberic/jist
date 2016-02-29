@@ -3,14 +3,21 @@ package com.samatkinson.jist.storage;
 
 import com.samatkinson.jist.exception.JistException;
 
+import java.io.File;
 import java.sql.*;
 
 public class SqliteStorage implements Storage {
 
+    private final File db;
     private Connection c = null;
 
+    public SqliteStorage(String dataDir) {
+        if (dataDir == null) dataDir = ".";
+        this.db = new File(dataDir, "jist.db");
+    }
+
     public static void main(String[] args) throws SQLException {
-        SqliteStorage sqliteStorage = new SqliteStorage();
+        SqliteStorage sqliteStorage = new SqliteStorage(".");
         sqliteStorage.connect();
 
         sqliteStorage.addJist("Some random text");
@@ -25,7 +32,7 @@ public class SqliteStorage implements Storage {
     public void connect() throws SQLException {
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:jist.db");
+            c = DriverManager.getConnection("jdbc:sqlite:" + db.getCanonicalPath());
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
