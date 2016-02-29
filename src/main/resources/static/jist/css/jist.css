@@ -1,0 +1,27 @@
+body{
+    height: 100%;
+    min-height: 100%;
+}
+.container{
+    margin-top: 25px;
+}
+.footer{
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+
+}
+.two button{
+    width: 100%;
+    padding: 0px;
+}
+
+select.theme {
+    float: right;
+}
+
+select.keybinding {
+    float: right;
+}
