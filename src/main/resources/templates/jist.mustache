@@ -19,12 +19,12 @@
 
     <!-- CSS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/skeleton.css">
-    <link rel="stylesheet" href="/css/jist.css">
-    <script src="/js/matchmedia.addListener.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/matchmedia.polyfill.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/respond.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="/jist/css/normalize.css">
+    <link rel="stylesheet" href="/jist/css/skeleton.css">
+    <link rel="stylesheet" href="/jist/css/jist.css">
+    <script src="/jist/js/matchmedia.addlistener.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jist/js/matchmedia.polyfill.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/jist/js/respond.js" type="text/javascript" charset="utf-8"></script>
 
 
     <!-- Favicon
@@ -80,8 +80,8 @@
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/jist/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/jist/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.getSession().setMode("ace/mode/javascript");
@@ -91,8 +91,8 @@
             {{^isNewJist}}editor.setReadOnly(true);{{/isNewJist}}
 
     function saveJist() {
-        $.post("/add", {jist: editor.getValue()}, function (data) {
-            $(".result").val('http://{{server}}/jists/' + data);
+        $.post("{{prefix}}/add", {jist: editor.getValue()}, function (data) {
+            $(".result").val('http://{{server}}{{prefix}}/jists/' + data);
             $(".result").show();
             $(".save").hide();
             $(".clear").hide();
